@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 5.1.4'
 gem 'puma', '~> 3.9'
-gem 'sqlite3'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 3.2.0'
 gem 'coffee-rails', '~> 4.2'
@@ -11,10 +10,11 @@ gem 'jbuilder', '~> 2.7'
 
 #Gems added by dev team
 gem 'immutable-struct'
+gem 'pg', '~> 0.18'
+gem 'scenic'
 
 group :development, :test do
   gem 'byebug', platforms: :mri
-  gem 'sqlite3', '1.3.13'
 end
 
 group :development do
