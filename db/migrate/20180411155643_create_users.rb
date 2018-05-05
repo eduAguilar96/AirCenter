@@ -10,6 +10,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
 
       CREATE TABLE users(
         id uuid NOT NULL,
+        nationality_id uuid,
         name CHAR(50) NOT NULL,
         last_name_p CHAR(50) NOT NULL,
         last_name_m CHAR(50),
@@ -17,15 +18,14 @@ class CreateUsers < ActiveRecord::Migration[5.1]
         telephone CHAR(50) NOT NULL,
         birth_date DATE NOT NULL,
         passport CHAR(50) NOT NULL,
-        nationality_id uuid NOT NULL,
         PRIMARY KEY(id),
         FOREIGN KEY(nationality_id) REFERENCES user_nationalities(id)
       );
 
       CREATE TABLE bags(
         id uuid NOT NULL,
+        user_id uuid,
         asiento CHAR(50) NOT NULL,
-        user_id uuid NOT NULL,
         PRIMARY KEY (id),
         FOREIGN KEY (user_id) REFERENCES users(id)
       );
@@ -42,11 +42,11 @@ class CreateUsers < ActiveRecord::Migration[5.1]
 
       CREATE TABLE tickets(
         id uuid NOT NULL,
+        flight_id uuid,
+        user_id uuid,
         seat CHAR(50) NOT NULL,
         cost INT NOT NULL,
         zone CHAR(50) NOT NULL,
-        user_id uuid NOT NULL,
-        flight_id uuid NOT NULL,
         PRIMARY KEY(id),
         FOREIGN KEY (user_id) REFERENCES users(id),
         FOREIGN KEY(flight_id) REFERENCES flight_informations(id)
@@ -54,11 +54,10 @@ class CreateUsers < ActiveRecord::Migration[5.1]
 
       CREATE TABLE reservation_informations(
         id uuid NOT NULL,
-        flight_id uuid NOT NULL,
+        flight_id uuid,
         available_tickets INT NOT NULL,
         flight_type BIT NOT NULL,
         capacity INT NOT NULL,
-        reservation_id uuid NOT NULL,
         PRIMARY KEY(id),
         FOREIGN KEY (flight_id) REFERENCES flight_informations(id)
       )

@@ -1,0 +1,2 @@
+module ReservationInformationsControllerHelper
+end
