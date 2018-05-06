@@ -3,9 +3,10 @@ class ReservationInformationsController < ApplicationController
   end
 
   def index
-  end
 
+  end
   def show
+    @reservation = ReservationInformation.uno(params[:id]);
   end
 
   def update
