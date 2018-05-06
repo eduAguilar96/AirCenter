@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :index, :show, :create, :update]
 
-  root 'application#hello'
+  root 'flights#index'
 end

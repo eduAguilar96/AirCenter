@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
     @user.birth_date
     @user.save
-    redirect_to @user
+    redirect_to "/flights"
   end
 
   def index
