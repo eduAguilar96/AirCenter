@@ -42,9 +42,15 @@
   <% @flights.each do |flight| %>
     <tr>
       <td><%= flight['origin'] %></td>
-      <td><%= flight['destination'] %></td>
+      <td>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <%= flight['destination'] %>
+      </td>
       <td><%= flight['day'] %></td>
-      <td><%= flight['departure_time'] %></td>
+      <td>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= Time.parse(flight['departure_time']).strftime("%H:%M") %>
+      </td>
 
       <td><%= flight[:id] %></td>
       <td><%= link_to 'More Info', "/flights/#{flight['id']}" %></td>

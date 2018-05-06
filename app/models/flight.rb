@@ -6,7 +6,8 @@ class Flight < ApplicationRecord
     ActiveRecord::Base.connection.exec_query(
       'SELECT '\
         '* '\
-      'FROM flights'
+      'FROM flights '\
+      'ORDER BY flights.day, flights.departure_time'
     )
   end
 
@@ -17,7 +18,8 @@ class Flight < ApplicationRecord
       'FROM flights '\
       "WHERE flights.origin = '#{origin}' "\
       "AND flights.destination = '#{destination}' "\
-      "AND flights.day BETWEEN '#{from}' AND '#{to}'"
+      "AND flights.day BETWEEN '#{from}' AND '#{to}' "\
+      'ORDER BY flights.day, flights.departure_time'
     )
   end
 
