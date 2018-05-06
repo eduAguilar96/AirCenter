@@ -14,4 +14,16 @@
   <tr><strong>Arrival Time</strong> <%= Time.parse(@flight[0]['arrival_time']).strftime("%H:%M") %> </tr>
 </table>
 </br>
-<%= link_to 'Make Reservation', new_reservation_path(flight_id: @flight[0]['id']), class: "btn btn-primary btn-lg"%>
+<%= link_to(
+      'Make Reservation',
+      url_for(
+        action: 'create',
+        controller: 'reservations',
+        reservation: {
+          flight_id: @flight[0]['id']
+        }
+      ),
+      :method => :post,
+      class: "btn btn-primary btn-lg"
+    )
+%>

@@ -1,0 +1,35 @@
+<%= simple_form_for(@reservation) do |f| %>
+  <% if @reservation.errors.any? %>
+    <% @reservation.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger">
+        <strong>Error!</strong> <%= msg %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <h3>Passengers</h3>
+  <table class='table'>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Paternal Last Name</th>
+        <th>Maternal Last Name</th>
+        <th>Mail</th>
+        <th>Telephone</th>
+        <th>Birth Date</th>
+        <th>Passport</th>
+      </tr>
+    </thead>
+    <tbody class='users'>
+      <%= f.simple_fields_for :users do |builder| %>
+        <%= render 'user_fields', f: builder %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+    <%= link_to_add_association 'Add Passenger', f, :users, class: 'btn btn-primary', data:{ association_insertion_node: '.users', association_insertion_method: :append }%>
+  </div>
+<% end %>
