@@ -5,102 +5,49 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+places = [
+  "DistritoFederal",
+  "Cancun",
+  "Monterrey",
+  "Toronto",
+  "NewYork",
+  "Chiapas",
+  "Merida",
+  "Berlin",
+  "Noruega",
+  "Atlantis",
+  "Copenhagen",
+  "Egypt",
+  "Fiji",
+  "Russia",
+  "Cyka",
+  "Blyat",
+  "Tokyo",
+  "Greenland"
+]
 
-user = User.create(
-  name: "Bruce",
-  last_name_p: "Wayne",
-  last_name_m: "Kane",
-  mail: "batman@gmail.com",
-  telephone: "666",
-  birth_date: "2000-1-1",
-  passport: "12345"
-)
-User.create(
-  name: "Peter",
-  last_name_p: "Parker",
-  mail: "spiderman@gmail.com",
-  telephone: "555",
-  birth_date: "2000-1-1",
-  passport: "1520978"
-)
-User.create(
-  name: "Scott",
-  last_name_p: "Pilgrim",
-  last_name_m: "Flowers",
-  mail: "scott@gmail.com",
-  telephone: "777",
-  birth_date: "2000-1-1",
-  passport: "7867589"
-)
+def rand_in_range(from, to)
+  rand * (to - from) + from
+end
 
-flight_1 = Flight.create(
-  day: Date.today,
-  departure_time: Time.now,
-  arrival_time: Time.now,
-  origin: "Monterrey",
-  destination: "San Fransisco"
-)
-Flight.create(
-  day: Date.today,
-  departure_time: Time.now,
-  arrival_time: Time.now,
-  origin: "Monterrey",
-  destination: "DF"
-)
-Flight.create(
-  day: Date.today,
-  departure_time: Time.now,
-  arrival_time: Time.now,
-  origin: "Monterrey",
-  destination: "Cancun"
-)
-Flight.create(
-  day: Date.today,
-  departure_time: Time.now,
-  arrival_time: Time.now,
-  origin: "Monterrey",
-  destination: "Toronto"
-)
-Flight.create(
-  day: Date.today,
-  departure_time: Time.now,
-  arrival_time: Time.now,
-  origin: "Monterrey",
-  destination: "NY"
-)
-Flight.create(
-  day: Date.today,
-  departure_time: Time.now,
-  arrival_time: Time.now,
-  origin: "Monterrey",
-  destination: "Chiapas"
-)
-Flight.create(
-  day: Date.today,
-  departure_time: Time.now,
-  arrival_time: Time.now,
-  origin: "Monterrey",
-  destination: "Merida"
-)
-Flight.create(
-  day: Date.today,
-  departure_time: Time.now,
-  arrival_time: Time.now,
-  origin: "Monterrey",
-  destination: "Berlin"
-)
-Flight.create(
-  day: Date.today,
-  departure_time: Time.now,
-  arrival_time: Time.now,
-  origin: "Monterrey",
-  destination: "Noruega"
-)
+def rand_time(from, to=Time.now)
+  Time.at(rand_in_range(from.to_f, to.to_f))
+end
 
-ReservationInformation.create(
-  flight_id: flight_1.id,
-  user_id: user.id,
-  available_tickets: 50,
-  flight_type: 0,
-  capacity: 50,
-)
+places += places + places
+places.each do |origin|
+  places.each do |destination|
+    if origin != destination
+      time = rand_time(10.day.ago)
+      Flight.create(
+        day: time.to_date,
+        departure_time: time,
+        arrival_time: time + 60*60,
+        origin: origin,
+        destination: destination,
+        capacity: 75,
+        base_price: 1200
+      )
+    end
+  end
+end
