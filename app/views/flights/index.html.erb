@@ -1,2 +1,53 @@
-<h1>FlightsController#index</h1>
-<p>Find me in app/views/flights_controller/index.html.erb</p>
+<h1>Flights</h1>
+
+<%= params[:date] %>
+
+<%= form_with scope: :flight, url: flights_path, :html => { :method => 'GET' }, local: true do |form| %>
+  <table>
+    <tr>
+      <th><strong><%= form.label :origin %></strong></th>
+      <th><strong><%= form.label :destination %></strong></th>
+      <th><strong><%= form.label :from %></strong></th>
+      <th><strong><%= form.label :to   %></strong></th>
+    </tr>
+    <tr>
+      <th>
+        <%= form.text_field :origin, placeholder: "Monterrey", value: params.dig('flight', 'origin') %>
+      </th>
+      <th>
+        <%= form.text_field :destination, placeholder: "Cancun", value: params.dig('flight', 'destination') %>
+      </th>
+      <th>
+        <%= form.date_field :from, placeholder: "2000-1-1", value: params.dig('flight', 'from') %>
+      </th>
+      <th>
+        <%= form.date_field :to, placeholder: "3000-1-1", value: params.dig('flight', 'to') %>
+      </th>
+      <th>
+        <%= form.submit "Filter Flights" %>
+      </th>
+    </tr>
+  </table>
+<% end %>
+</br>
+<table>
+  <tr>
+    <th>Origen</th>
+    <th>Destination</th>
+    <th>Day</th>
+    <th>Departure Time</th>
+    <th></th>
+  </tr>
+
+  <% @flights.each do |flight| %>
+    <tr>
+      <td><%= flight['origin'] %></td>
+      <td><%= flight['destination'] %></td>
+      <td><%= flight['day'] %></td>
+      <td><%= flight['departure_time'] %></td>
+
+      <td><%= flight[:id] %></td>
+      <td><%= link_to 'More Info', "/flights/#{flight['id']}" %></td>
+    </tr>
+  <% end %>
+</table>
