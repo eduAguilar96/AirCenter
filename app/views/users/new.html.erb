@@ -1,51 +1,49 @@
-<div class="container">
-  <h1>New User</h1>
+<h1>New User</h1>
 
-  <% if @user.errors.any? %>
-    <% @user.errors.full_messages.each do |msg| %>
-      <div class="alert alert-danger">
-        <strong>Error!</strong> <%= msg %>
-      </div>
-    <% end %>
+<% if @user.errors.any? %>
+  <% @user.errors.full_messages.each do |msg| %>
+    <div class="alert alert-danger">
+      <strong>Error!</strong> <%= msg %>
+    </div>
   <% end %>
-  <%= form_for @user do |f| %>
-    <p>
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
-    </p>
+<% end %>
+<%= form_for @user do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
 
-    <p>
-      <%= f.label :last_name_p %><br>
-      <%= f.text_field :last_name_p %>
-    </p>
+  <p>
+    <%= f.label :last_name_p %><br>
+    <%= f.text_field :last_name_p %>
+  </p>
 
-    <p>
-      <%= f.label :last_name_m %><br>
-      <%= f.text_field :last_name_m %>
-    </p>
+  <p>
+    <%= f.label :last_name_m %><br>
+    <%= f.text_field :last_name_m %>
+  </p>
 
-    <p>
-      <%= f.label :mail %><br>
-      <%= f.text_field :mail %>
-    </p>
+  <p>
+    <%= f.label :mail %><br>
+    <%= f.text_field :mail %>
+  </p>
 
-    <p>
-      <%= f.label :telephone %><br>
-      <%= f.text_field :telephone %>
-    </p>
+  <p>
+    <%= f.label :telephone %><br>
+    <%= f.text_field :telephone %>
+  </p>
 
-    <p>
-      <%= f.label :birth_date %><br>
-      <%= f.date_field :birth_date %>
-    </p>
+  <p>
+    <%= f.label :birth_date %><br>
+    <%= f.date_field :birth_date %>
+  </p>
 
-    <p>
-      <%= f.label :passport %><br>
-      <%= f.text_field :passport %>
-    </p>
+  <p>
+    <%= f.label :passport %><br>
+    <%= f.text_field :passport %>
+  </p>
 
-    <p>
-      <%= f.submit %>
-    </p>
-  <% end %>
-</div>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

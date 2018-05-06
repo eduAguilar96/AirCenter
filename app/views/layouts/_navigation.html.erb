@@ -1,0 +1,12 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "Air Center", root_path, class: "navbar-brand", id: "logo" %>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><%= link_to('Home', root_path) %></li>
+      <li><%= link_to('Flights', '/flights') %></li>
+      <li><%= link_to('Reservations', '/reservations') %></li>
+    </ul>
+  </div>
+</nav>
