@@ -14,6 +14,8 @@ gem 'pg', '~> 0.18'
 gem 'scenic'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+gem 'cocoon'
+gem 'simple_form'
 
 group :development, :test do
   gem 'byebug', platforms: :mri
