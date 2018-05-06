@@ -1,6 +1,6 @@
 class Flight < ApplicationRecord
 
-  has_many :reservation_informations
+  has_many :reservations
 
   def self.todos
     ActiveRecord::Base.connection.exec_query(

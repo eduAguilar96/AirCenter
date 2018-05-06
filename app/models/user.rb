@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  has_many :reservation_informations
+  belongs_to :reservation
   has_many :tickets
 
 
