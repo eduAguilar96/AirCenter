@@ -13,46 +13,5 @@
   </br>
   <tr><strong>Arrival Time</strong> <%= Time.parse(@flight[0]['arrival_time']).strftime("%H:%M") %> </tr>
 </table>
-
-
-<h1>Create Reservation</h1>
-<%= form_with scope: :user, url: users_path, local: true do |form| %>
-  <p>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </p>
-
-  <p>
-    <%= form.label :last_name_p %><br>
-    <%= form.text_field :last_name_p %>
-  </p>
-
-  <p>
-    <%= form.label :last_name_m %><br>
-    <%= form.text_field :last_name_m %>
-  </p>
-
-  <p>
-    <%= form.label :mail %><br>
-    <%= form.text_field :mail %>
-  </p>
-
-  <p>
-    <%= form.label :telephone %><br>
-    <%= form.text_field :telephone %>
-  </p>
-
-  <p>
-    <%= form.label :birth_date %><br>
-    <%= form.date_field :birth_date %>
-  </p>
-
-  <p>
-    <%= form.label :passport %><br>
-    <%= form.text_field :passport %>
-  </p>
-
-  <p>
-    <%= form.submit %>
-  </p>
-<% end %>
+</br>
+<%= link_to 'Make Reservation', new_reservation_path(flight_id: @flight[0]['id']), class: "btn btn-primary btn-lg"%>
