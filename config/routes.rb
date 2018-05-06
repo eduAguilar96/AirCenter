@@ -8,5 +8,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :index, :show, :create, :update]
 
-  root 'flights#index'
+  get "/pages/:page" => "pages#show"
+
+  root "pages#show", page: "home"
 end
