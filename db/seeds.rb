@@ -54,6 +54,48 @@ Flight.create(
   origin: "Monterrey",
   destination: "Cancun"
 )
+Flight.create(
+  day: Date.today,
+  departure_time: Time.now,
+  arrival_time: Time.now,
+  origin: "Monterrey",
+  destination: "Toronto"
+)
+Flight.create(
+  day: Date.today,
+  departure_time: Time.now,
+  arrival_time: Time.now,
+  origin: "Monterrey",
+  destination: "NY"
+)
+Flight.create(
+  day: Date.today,
+  departure_time: Time.now,
+  arrival_time: Time.now,
+  origin: "Monterrey",
+  destination: "Chiapas"
+)
+Flight.create(
+  day: Date.today,
+  departure_time: Time.now,
+  arrival_time: Time.now,
+  origin: "Monterrey",
+  destination: "Merida"
+)
+Flight.create(
+  day: Date.today,
+  departure_time: Time.now,
+  arrival_time: Time.now,
+  origin: "Monterrey",
+  destination: "Berlin"
+)
+Flight.create(
+  day: Date.today,
+  departure_time: Time.now,
+  arrival_time: Time.now,
+  origin: "Monterrey",
+  destination: "Noruega"
+)
 
 ReservationInformation.create(
   flight_id: flight_1.id,
@@ -61,12 +103,4 @@ ReservationInformation.create(
   available_tickets: 50,
   flight_type: 0,
   capacity: 50,
-)
-
-Ticket.create(
-  flight_id: flight_1.id,
-  user_id: user.id,
-  seat: "A1",
-  cost: 1000,
-  zone: "7"
 )
