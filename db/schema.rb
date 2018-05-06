@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20180506065532) do
 
   create_table "flights", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.date "day", null: false
-    t.decimal "departure_time", null: false
-    t.decimal "arrival_time", null: false
+    t.time "departure_time", null: false
+    t.time "arrival_time", null: false
     t.string "origin", limit: 50, null: false
     t.string "destination", limit: 50, null: false
     t.integer "capacity", null: false

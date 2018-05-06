@@ -4,8 +4,8 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       CREATE TABLE flights(
         id uuid,
         day DATE NOT NULL,
-        departure_time DECIMAL NOT NULL,
-        arrival_time DECIMAL NOT NULL,
+        departure_time TIME NOT NULL,
+        arrival_time TIME NOT NULL,
         origin CHAR(50) NOT NULL,
         destination CHAR(50) NOT NULL,
         capacity INT NOT NULL,
