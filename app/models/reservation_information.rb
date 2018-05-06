@@ -13,7 +13,7 @@ class ReservationInformation < ApplicationRecord
     ActiveRecord::Base.connection.exec_query(
       'SELECT name FROM reservation_informations a JOIN
        users b WHERE  a.user_id = b.id '\
-      "  AND id = '#{id}' "
+      "  AND b.id = '#{id}' "
     )
   end
 
