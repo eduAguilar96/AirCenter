@@ -1,7 +1,5 @@
 class Flight < ApplicationRecord
 
-  before_create :generate_id
-
   has_many :reservation_informations
 
   def self.todos
@@ -30,11 +28,5 @@ class Flight < ApplicationRecord
       'FROM flights '\
       "WHERE flights.id = '#{id}'"
     )
-  end
-
-  private
-
-  def generate_id
-    self.id = SecureRandom.uuid
   end
 end

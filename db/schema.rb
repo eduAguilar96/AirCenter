@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180411155643) do
+ActiveRecord::Schema.define(version: 20180506065532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
-  create_table "flights", id: :uuid, default: nil, force: :cascade do |t|
+  create_table "flights", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.date "day", null: false
     t.decimal "departure_time", null: false
     t.decimal "arrival_time", null: false
@@ -25,11 +26,11 @@ ActiveRecord::Schema.define(version: 20180411155643) do
     t.integer "base_price", default: 1000, null: false
   end
 
-  create_table "reservations", id: :uuid, default: nil, force: :cascade do |t|
+  create_table "reservations", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "flight_id"
   end
 
-  create_table "tickets", id: :uuid, default: nil, force: :cascade do |t|
+  create_table "tickets", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "user_id"
     t.uuid "reservation_id"
     t.string "seat", limit: 50, null: false
@@ -37,7 +38,7 @@ ActiveRecord::Schema.define(version: 20180411155643) do
     t.string "zone", limit: 50, null: false
   end
 
-  create_table "users", id: :uuid, default: nil, force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|
     t.uuid "reservation_id"
     t.string "name", limit: 50, null: false
     t.string "last_name_p", limit: 50, null: false
