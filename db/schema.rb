@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180505181921) do
+ActiveRecord::Schema.define(version: 20180506030217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,14 +29,8 @@ ActiveRecord::Schema.define(version: 20180505181921) do
     t.bit "flight_type", limit: 1, null: false
     t.integer "capacity", null: false
     t.uuid "user_id"
-  end
-
-  create_table "tickets", id: :uuid, default: nil, force: :cascade do |t|
-    t.uuid "flight_id"
-    t.uuid "user_id"
-    t.string "seat", limit: 50, null: false
-    t.integer "cost", null: false
-    t.string "zone", limit: 50, null: false
+    t.integer "price", default: 1000, null: false
+    t.string "seat"
   end
 
   create_table "users", id: :uuid, default: nil, force: :cascade do |t|
@@ -51,6 +45,4 @@ ActiveRecord::Schema.define(version: 20180505181921) do
   end
 
   add_foreign_key "reservation_informations", "flights", name: "reservation_informations_flight_id_fkey"
-  add_foreign_key "tickets", "flights", name: "tickets_flight_id_fkey"
-  add_foreign_key "tickets", "users", name: "tickets_user_id_fkey"
 end
