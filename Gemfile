@@ -12,7 +12,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'immutable-struct'
 gem 'pg', '~> 0.18'
 gem 'scenic'
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'byebug', platforms: :mri
