@@ -1,4 +1,5 @@
 <%= simple_form_for(@reservation) do |f| %>
+
   <% if @reservation.errors.any? %>
     <% @reservation.errors.full_messages.each do |msg| %>
       <div class="alert alert-danger">
@@ -30,6 +31,17 @@
 
   <div class="form-actions">
     <%= f.button :submit %>
-    <%= link_to_add_association 'Add Passenger', f, :users, class: 'btn btn-primary', data:{ association_insertion_node: '.users', association_insertion_method: :append }%>
+    <%= link_to_add_association(
+        'Add Passenger',
+        f,
+        :users,
+        class: 'btn btn-primary',
+        data:{
+          association_insertion_node: '.users',
+          association_insertion_method: :append
+        }
+      )
+    %>
   </div>
 <% end %>
+<%= link_to %>

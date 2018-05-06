@@ -31,7 +31,7 @@ class ReservationsController < ApplicationController
     if @reservation.update(reservation_params)
       redirect_to edit_reservation_path(@reservation), notice: "Reservation succesfully updated"
     else
-      render :edit
+      render :edit, notice: 'hay un pedo'
     end
   end
 
@@ -39,10 +39,14 @@ class ReservationsController < ApplicationController
   end
 
   private
+    def set_reservation
+      @reservation = Reservation.find(params[:id])
+    end
+
     def reservation_params
       params.require(:reservation).permit(
         :flight_id,
-        user_attributes: User.attribute_names.map(&:to_sym)
+        users_attributes: User.attribute_names.map(&:to_sym)
       )
     end
 end
