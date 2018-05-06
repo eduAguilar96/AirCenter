@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'immutable-struct'
 gem 'pg', '~> 0.18'
 gem 'scenic'
+gem 'bootstrap', '~> 4.1.1'
 
 group :development, :test do
   gem 'byebug', platforms: :mri
