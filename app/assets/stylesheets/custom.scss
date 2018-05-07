@@ -15,7 +15,7 @@
 }
 
 .jumbotron {
-  margin-top: 50px;
+  // margin-top: 50px;
 }
 
 .logo-image {
@@ -25,4 +25,31 @@
 
 .table{
   width: auto;
+}
+
+.container {
+  // display: flex
+  margin-top: 50px;
+}
+
+.jumbotron-container {
+  display: flex;
+  margin-top:  0px;
+}
+
+.jumbotron-container .jumbotron {
+  margin: 5px;
+  margin-top: 0px;
+}
+
+.ticket-1 {
+  background-color:  #aed6f1;
+}
+
+.ticket-2 {
+  background-color: #d6eaf8;
+}
+
+.ticket-3 {
+  background-color: #ebf5fb;
 }

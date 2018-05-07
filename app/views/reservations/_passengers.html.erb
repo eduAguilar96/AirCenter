@@ -1,0 +1,13 @@
+<% if @users.count >= 1 %>
+  <ul class="list-group">
+    <% @users.each do |user| %>
+      <li class="list-group-item">
+        <%= user.name %> <%= user.last_name_p %>| <%= user.mail %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <div class="alert alert-warning">
+    <strong>Warning!</strong> You created a reservation but haven't added any passengers, please edit your resevation.
+  </div>
+<% end %>

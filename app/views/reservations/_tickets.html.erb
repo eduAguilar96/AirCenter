@@ -1,0 +1,78 @@
+<% if @tickets.count >=1 %>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <strong>Quantity: </strong> <%= @tickets.count %>
+    </li>
+    <li class="list-group-item">
+      <strong>Seats: </strong>
+      <% @tickets.each do |ticket| %>
+        <%= ticket.seat %> |
+      <% end %>
+    </li>
+    <li class="list-group-item">
+      <strong>Gate: </strong> <%= @tickets[0].zone %>
+    </li>
+    <li class="list-group-item">
+      <% sum = 0 %>
+      <% @tickets.each { |ticket| sum += ticket.cost } %>
+      <strong>Total Cost: </strong> <%= sum %>
+    </li>
+  </ul>
+<% else %>
+<% tickets_to_create = @reservation.build_tickets(@users, @reservation)  %>
+<div class="row">
+  <div class="container jumbotron-container">
+    <div class="jumbotron center col-md-4 ticket-3">
+      <h2>Third Class</h2>
+      <h4>$<%= @flight.base_price * @users.count * 1.0%></h4>
+      <%= link_to(
+            'Buy Tickets',
+            url_for(
+              action: 'create',
+              controller: 'tickets',
+              cost: @flight.base_price * 1,
+              reservation_id: @reservation.id,
+              tickets: tickets_to_create
+            ),
+            :method => :post,
+            class: "btn btn-primary center"
+          )
+      %>
+    </div>
+    <div class="jumbotron center col-md-4 ticket-2">
+      <h2>Second Class</h2>
+      <h4>$<%= @flight.base_price * @users.count * 1.25 %></h4>
+      <%= link_to(
+            'Buy Tickets',
+            url_for(
+              action: 'create',
+              controller: 'tickets',
+              cost: @flight.base_price * 1.25,
+              reservation_id: @reservation.id,
+              tickets: tickets_to_create
+            ),
+            :method => :post,
+            class: "btn btn-primary center"
+          )
+      %>
+    </div>
+    <div class="jumbotron center col-md-4 ticket-1">
+      <h2>First Class</h2>
+      <h4>$<%= @flight.base_price * @users.count * 1.5 %></h4>
+      <%= link_to(
+            'Buy Tickets',
+            url_for(
+              action: 'create',
+              controller: 'tickets',
+              cost: @flight.base_price * 1.5,
+              reservation_id: @reservation.id,
+              tickets: tickets_to_create
+            ),
+            :method => :post,
+            class: "btn btn-primary center"
+          )
+      %>
+    </div>
+  </div>
+</div>
+<% end %>

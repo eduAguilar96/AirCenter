@@ -8,7 +8,7 @@
     <% end %>
   <% end %>
 
-  <h3>Passengers</h3>
+  <h1>Passengers</h1>
   <table class='table'>
     <thead>
       <tr>
@@ -44,4 +44,8 @@
     %>
   </div>
 <% end %>
-<%= link_to %>
+</br>
+<%= link_to 'Confirm Reservation / Buy Tickets', @reservation, class: "btn btn-primary center"%>
+</br>
+</br>
+<p><strong>Reservation number:</strong> <%= @reservation.id %> </p>
