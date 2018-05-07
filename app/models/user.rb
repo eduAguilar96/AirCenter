@@ -12,7 +12,20 @@ class User < ApplicationRecord
   validates :birth_date, presence: true
   validates :passport, uniqueness: true, presence: true
 
-  def self.algunos(reservation_id)
+  def self.algunos_por_vuelo(flight_id:)
+    sql =
+    'SELECT '\
+    '* '\
+    'FROM users '\
+    'LEFT JOIN '\
+    'reservations '\
+    'ON '\
+    'reservations.id = users.reservation_id '\
+    "WHERE reservations.flight_id = '#{flight_id}'"
+    @result = User.find_by_sql(sql)
+  end
+
+  def self.algunos_por_reserva(reservation_id:)
     # connection = ActiveRecord::Base.connection
     sql =
       'SELECT '\

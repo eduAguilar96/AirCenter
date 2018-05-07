@@ -15,7 +15,7 @@ class ReservationsController < ApplicationController
 
   def show
     @flight = Flight.uno_mejor(@reservation.flight_id)
-    @users = User.algunos(@reservation.id) || []
+    @users = User.algunos_por_reserva(reservation_id: @reservation.id) || []
     @tickets = Ticket.algunos(@reservation.id)
   end
 
@@ -39,10 +39,17 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    if @reservation.update(reservation_params)
-      redirect_to edit_reservation_path(@reservation), notice: "Reservation succesfully updated"
+    @flight = Flight.uno_mejor(@reservation.flight_id)
+    if (User.algunos_por_vuelo(flight_id: @flight.id).count < @flight.capacity)
+      if @reservation.update(reservation_params)
+        redirect_to edit_reservation_path(@reservation), notice: "Reservation succesfully updated"
+      else
+        flash[:error] = "Hay un pedo"
+        render :edit
+      end
     else
-      render :edit, notice: 'hay un pedo'
+      flash[:error] = "Flight sold out"
+      render :edit
     end
   end
 
