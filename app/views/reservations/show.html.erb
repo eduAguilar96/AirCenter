@@ -15,10 +15,12 @@
     <strong>Day: </strong><%= @flight.day %>
   </li>
   <li class="list-group-item">
-    <strong>Departure Time : </strong><%= @flight.departure_time %>
+    <strong>Departure Time : </strong>
+    <%= @flight.departure_time.strftime("%H:%M") %>
   </li>
   <li class="list-group-item">
-    <strong>Arrival Time : </strong><%= @flight.arrival_time %>
+    <strong>Arrival Time : </strong>
+    <%= @flight.arrival_time.strftime("%H:%M") %>
   </li>
 </ul>
 <h3>Passangers</h3>
