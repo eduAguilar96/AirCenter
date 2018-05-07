@@ -2,7 +2,15 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
   def index
-    @reservations = Reservation.all
+    if(params[:id]) && validate_uuid_format(params[:id])
+      if @reservation = Reservation.uno(params[:id])
+        redirect_to @reservation
+      else
+        flash[:error] = "Reservation not found"
+      end
+    else
+      # flash[:error] = "Invalid reservation number"
+    end
   end
 
   def show
@@ -23,7 +31,8 @@ class ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
     if @reservation.save
-      redirect_to edit_reservation_path(@reservation), notice: 'Reservation succesfully created.'
+      flash[:notice] = 'Reservation succesfully created.'
+      redirect_to edit_reservation_path(@reservation)
     else
       render :new, notice: 'hay un pedo'
     end
@@ -41,6 +50,13 @@ class ReservationsController < ApplicationController
   end
 
   private
+
+    def validate_uuid_format(uuid)
+      uuid_regex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
+      return true if uuid_regex.match?(uuid.to_s.downcase)
+      false
+    end
+
     def set_reservation
       @reservation = Reservation.uno(params[:id])
     end

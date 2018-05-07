@@ -1,8 +1,7 @@
 <h1>Find Your Reservation</h1>
 
-<div class="field">
-  <%= label_tag("Reservation number") %>
-  <%= text_field_tag :id, nil, class: 'form-control'    %>
-</div>
-</br>
-<%= link_to "Search", "reservations/#{:id}", :class => "btn btn-primary" %>
+<%= form_tag("/reservations/", method: "get") do %>
+  <%= label_tag(:id, "Number:") %>
+  <%= text_field_tag :id, "", class: "search-bar" %>
+  <%= submit_tag("Search")%>
+<% end %>
