@@ -1,0 +1,7 @@
+<h1>Find Your Reservation</h1>
+
+<%= form_tag("/reservations/", method: "get") do %>
+  <%= label_tag(:id, "Number:") %>
+  <%= text_field_tag :id, "", class: "search-bar" %>
+  <%= submit_tag("Search")%>
+<% end %>

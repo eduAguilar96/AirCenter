@@ -1,2 +1,29 @@
-<h1>FlightsController#show</h1>
-<p>Find me in app/views/flights_controller/show.html.erb</p>
+<h1>Flight <% @flight[0]['id'] %></h1>
+
+<table>
+  <tr><strong>Day</strong> <%= @flight[0]['day'] %> </tr>
+  </br>
+  </br>
+  <tr><strong>Origin</strong> <%= @flight[0]['origin'] %> </tr>
+  </br>
+  <tr><strong>Departure Time</strong> <%= Time.parse(@flight[0]['departure_time']).strftime("%H:%M") %> </tr>
+  </br>
+  </br>
+  <tr><strong>Destination</strong> <%= @flight[0]['destination'] %> </tr>
+  </br>
+  <tr><strong>Arrival Time</strong> <%= Time.parse(@flight[0]['arrival_time']).strftime("%H:%M") %> </tr>
+</table>
+</br>
+<%= link_to(
+      'Make Reservation',
+      url_for(
+        action: 'create',
+        controller: 'reservations',
+        reservation: {
+          flight_id: @flight[0]['id']
+        }
+      ),
+      :method => :post,
+      class: "btn btn-primary btn-lg"
+    )
+%>

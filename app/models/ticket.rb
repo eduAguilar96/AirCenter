@@ -1,13 +1,15 @@
 class Ticket < ApplicationRecord
 
-  before_create :generate_id
-
   belongs_to :user
-  belongs_to :flight
+  belongs_to :reservation
 
-  private
-
-  def generate_id
-    self.id = SecureRandom.uuid
+  def self.algunos(reservation_id)
+    # connection = ActiveRecord::Base.connection
+    sql =
+      'SELECT '\
+        '* '\
+      'FROM tickets '\
+      "WHERE tickets.reservation_id = '#{reservation_id}'"
+    @result = Ticket.find_by_sql(sql)
   end
 end

@@ -1,0 +1,35 @@
+<h1>Reservation</h1>
+
+<h3>General Info</h3>
+<ul class="list-group">
+  <li class="list-group-item">
+    <strong>Number: </strong><%= @reservation.id %>
+  </li>
+  <li class="list-group-item">
+    <strong>Origin: </strong><%= @flight.origin %>
+  </li>
+  <li class="list-group-item">
+    <strong>Destination: </strong><%= @flight.destination %>
+  </li>
+  <li class="list-group-item">
+    <strong>Day: </strong><%= @flight.day %>
+  </li>
+  <li class="list-group-item">
+    <strong>Departure Time : </strong>
+    <%= @flight.departure_time.strftime("%H:%M") %>
+  </li>
+  <li class="list-group-item">
+    <strong>Arrival Time : </strong>
+    <%= @flight.arrival_time.strftime("%H:%M") %>
+  </li>
+</ul>
+<h3>Passangers</h3>
+<%= render 'passengers' %>
+<% if @users.count >= 1 %>
+  <h3>Tickets: <%= @users.count %> </h3>
+  <%= render 'tickets' %>
+<% end %>
+
+<% if @tickets.count == 0 %>
+  <%= link_to 'Edit Reservation', edit_reservation_path(@reservation), class: "btn btn-primary"%>
+<% end %>
