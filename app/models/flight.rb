@@ -31,4 +31,14 @@ class Flight < ApplicationRecord
       "WHERE flights.id = '#{id}'"
     )
   end
+
+  def self.uno_mejor(id)
+    # connection = ActiveRecord::Base.connection
+    sql =
+      'SELECT '\
+        '* '\
+      'FROM flights '\
+      "WHERE flights.id = '#{id}'"
+    @result = Flight.find_by_sql(sql)[0]
+  end
 end

@@ -1,10 +1,14 @@
 class ReservationsController < ApplicationController
+  before_action :set_reservation, only: [:show, :edit, :update, :destroy]
 
   def index
     @reservations = Reservation.all
   end
 
   def show
+    @flight = Flight.uno_mejor(@reservation.flight_id)
+    @users = User.algunos(@reservation.id) || []
+    @tickets = Ticket.algunos(@reservation.id)
   end
 
   def new
@@ -13,7 +17,6 @@ class ReservationsController < ApplicationController
   end
 
   def edit
-    @reservation = Reservation.find_by(id: params[:id])
     @reservation.users.build
   end
 
@@ -27,7 +30,6 @@ class ReservationsController < ApplicationController
   end
 
   def update
-    @reservation = Reservation.find_by(id: params[:id])
     if @reservation.update(reservation_params)
       redirect_to edit_reservation_path(@reservation), notice: "Reservation succesfully updated"
     else
@@ -40,7 +42,7 @@ class ReservationsController < ApplicationController
 
   private
     def set_reservation
-      @reservation = Reservation.find(params[:id])
+      @reservation = Reservation.uno(params[:id])
     end
 
     def reservation_params
